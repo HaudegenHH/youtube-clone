@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# youtube-clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- mkdir youtube-clone
+- cd into folder
+```sh
+npx create-react-app ./
+```
 
-## Available Scripts
+Additional dependencies:
+- emotion and emotion styles - needed for material ui 
+as well as mui icons and mui/material as ui kit 
+- axios - to make api calls
+- react-router-dom - for the routing
 
-In the project directory, you can run:
+note: for mui and react-router-dom its the latest versions that came out recently
 
-### `npm start`
+after copying over the package.json (or just the dependecies), install the packages and add the --legacy-peer-deps for older versions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```sh
+npm install --legacy-peer-deps
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- following instructions on mui.com  -> installation
+  
+https://mui.com/material-ui/getting-started/installation/
 
-### `npm test`
+To install the Roboto font in your project using the Google Web Fonts CDN use the provided link tag and paste it in the index.html
+- same for the material icons
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- the nice thing about mui is: hover (eg) over the imported "Stack" in the Navbar.jsx and follow the "Demos" link to the mui.com components page where you can find all details about the Stack component, how it is used (with ready to use code examples)
 
-### `npm run build`
+- if you hover again over Stack and follow the 2nd link (Stack API), you can see what attributes a specific component accepts
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- After scaffolding the project the data from the youtube api has to be fetched for which i use RapidAPI\
+  **https://rapidapi.com/ytdlfree/api/youtube-v31?utm_source=youtube.com%2FJavaScriptMastery&utm_medium=referral&utm_campaign=DevRel**
+- if not already: sign in with Email/PW or one of your social media accounts like google, facebook or github
+- press "subscribe to test", choose the basic/free tier (500 requests per day possible!)
+- go back to the endpoints, and now you can copy the code snippet of the options object (whcih contains the rapidAPI-Key)
+- create utils/fetchFromApi.js and paste it in
+- create .env and put your API-Key in there
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 'react-scripts' uses dotenv library under the hood
+- important: set environment variables starting with 'REACT_APP_' !
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- in order to get the desired data from different endpoints, i create a generic fn "fetchFromApi" which accepts the url-enpoint as parameter
+- then use the lifecycle hook useEffect in the Feed component to call this fn (when the component initially loads or the page gets reloaded)
+ 
