@@ -47,3 +47,17 @@ To install the Roboto font in your project using the Google Web Fonts CDN use th
 - in order to get the desired data from different endpoints, i create a generic fn "fetchFromApi" which accepts the url-enpoint as parameter
 - then use the lifecycle hook useEffect in the Feed component to call this fn (when the component initially loads or the page gets reloaded)
  
+---
+
+## Make use of the rapidAPI extension
+
+- 1st: go again to rapidapi.com, copy one of the urls that you are interested in, like:   
+https://youtube-v31.p.rapidapi.com/search
+- ..and make a GET request: open the vscode extension 
+- click: "create new project", name it (eg) "youbube" (its like postman and creating a new collection)
+- go back to rapidapi.com and copy over the auth headers
+- and finally the query params (that are required from rapidapi)
+- so for the "search"-endpoint it would be: "q" (as the key, "q" short 4 query of course), and "part" as key and "snippet" as value
+- send the request and with a successful 200 response you have several options like: JSON Tree, Raw, JSON Text
+- AND: you have an input field for "filter expressions" (eg: $.items[0].snippet.thumbnails.default.url )
+- this ability to have the result filtered live in advance saves you a lot of time!
